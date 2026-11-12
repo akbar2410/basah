@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BASAH Prototype | Outcome-Based Ecological Fiscal Transfer for Riau</title>
+<style>
+:root{--cr:#B5123E;--wine:#6E0B2A;--pink:#E83E73;--lp:#F9D5E0;--bl:#FFF4F7;--tx:#2E1A22;--gr:#8f7a82;--ok:#1f8a5b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--tx);background:#fff}
+body:before{content:"";position:fixed;right:-260px;top:-260px;width:720px;height:720px;border-radius:50%;border:60px solid #fff1f5;z-index:-1}
+header{padding:22px 32px 14px;border-top:8px solid var(--cr);display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{width:52px;height:52px;border-radius:50%;border:6px solid var(--cr);display:grid;place-items:center}
+.logo i{width:22px;height:22px;border-radius:50%;background:var(--pink);display:block}
+h1{margin:0;font-size:26px;color:var(--wine);line-height:1.15}
+h1 span{color:var(--cr)}
+.sub{color:var(--gr);font-size:13px;margin-top:4px}
+.dots{margin-left:auto;color:var(--pink);letter-spacing:6px;font-size:18px}
+main{padding:8px 32px 40px;max-width:1240px;margin:auto}
+.tabs{display:flex;gap:8px;margin:10px 0 18px;flex-wrap:wrap}
+.tab{border:2px solid var(--cr);background:#fff;color:var(--cr);padding:8px 16px;border-radius:999px;font-weight:700;cursor:pointer;font-size:14px}
+.tab.on{background:var(--cr);color:#fff}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1.1fr .9fr}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g2,.g4{grid-template-columns:1fr}}
+.card{background:#fff;border:1.5px solid var(--lp);border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(181,18,62,.06)}
+.card h3{margin:0 0 10px;color:var(--wine);font-size:16px}
+.kpi{background:var(--bl);border:1.5px dashed var(--pink);border-radius:14px;padding:14px}
+.kpi b{display:block;font-size:26px;color:var(--cr)}
+.kpi small{color:var(--gr);font-size:12px}
+.bar{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:12.5px}
+.bar .n{width:120px;text-align:right}
+.bar .t{flex:1;background:#f6eef1;border-radius:6px;height:16px;position:relative}
+.bar .f{height:100%;border-radius:6px}
+.bar .v{width:70px;font-variant-numeric:tabular-nums}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--wine);color:#fff;padding:8px;text-align:left;font-weight:600}
+th:first-child{border-radius:8px 0 0 0}th:last-child{border-radius:0 8px 0 0}
+td{padding:6px 8px;border-bottom:1px solid #f3e3e9}
+td input{width:70px;padding:4px 6px;border:1px solid var(--lp);border-radius:6px;font:inherit}
+.pill{padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700}
+.p-ok{background:#e3f5ec;color:var(--ok)}.p-no{background:#fde2e8;color:var(--cr)}
+.ctl{display:flex;gap:18px;flex-wrap:wrap;align-items:end;margin-bottom:12px}
+.ctl label{font-size:12.5px;color:var(--gr);display:flex;flex-direction:column;gap:4px}
+select,input[type=number]{padding:7px 10px;border:1.5px solid var(--lp);border-radius:8px;font:inherit}
+input[type=range]{accent-color:var(--cr);width:200px}
+.note{font-size:12px;color:var(--gr);background:var(--bl);border-left:4px solid var(--pink);padding:8px 12px;border-radius:6px;margin-top:10px}
+.flow{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.step{flex:1;min-width:170px;border-radius:14px;padding:14px;color:#fff}
+.step h4{margin:0 0 6px}
+.step p{margin:0;font-size:12.5px;opacity:.95}
+.arrow{align-self:center;color:var(--cr);font-size:22px;font-weight:800}
+.chk{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:13.5px}
+.chk input{accent-color:var(--cr);width:18px;height:18px}
+footer{padding:16px 32px;border-top:2px solid var(--lp);font-size:12px;color:var(--gr)}
+.hide{display:none}
+.formula{font-family:ui-monospace,Menlo,monospace;background:var(--bl);padding:10px;border-radius:8px;font-size:12.5px;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><i></i></div>
+  <div>
+    <h1>BASAH <span>Prototype</span></h1>
+    <div class="sub"><i>Bonus Anggaran berbasis Status Air dan Hotspot</i> · paying villages for wet peat, not paperwork · IAWC 2026</div>
+  </div>
+  <div class="dots">••••••••</div>
+</header>
+<main>
+  <div class="tabs">
+    <button class="tab on" data-t="urgency">1 · Urgency</button>
+    <button class="tab" data-t="sim">2 · Score &amp; Pay Simulator</button>
+    <button class="tab" data-t="verify">3 · Verify &amp; Publish</button>
+    <button class="tab" data-t="method">4 · Method &amp; Sources</button>
+  </div>
+
+  <!-- 1 URGENCY -->
+  <section id="urgency">
+    <div class="grid g4">
+      <div class="kpi"><b>15,477.9 ha</b><small>Riau burned area, Jan to Jun 2026 (MC Provinsi Riau, 2026)</small></div>
+      <div class="kpi"><b>≈17×</b><small>vs 907.8 ha in the same period of 2025</small></div>
+      <div class="kpi"><b>≈92%</b><small>of the 2026 burned area lies on peat (14,277.3 ha)</small></div>
+      <div class="kpi"><b id="takeShare">88.8%</b><small>inside the five TAKE districts that won the 2025 EFT Award (RRI, 2025)</small></div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><h3>Burned area by district, Jan to Jun 2026 (ha)</h3><div id="bars"></div>
+        <div class="note">Crimson = district already applying TAKE (Siak since 2021, Bengkalis 2022, Pelalawan 2023, Rokan Hulu and Dumai 2024).</div></div>
+      <div class="card"><h3>Why outcome-based?</h3>
+        <p style="font-size:14px;line-height:1.55">TAKE today rewards villages for meeting indicator checklists. The fires of 2026 concentrated in districts that already receive ecological awards. BASAH keeps the existing TAKE base but turns part of it into a bonus paid only for <b>measured wet peat</b>, <b>less burned area</b> and <b>fewer hotspots</b>.</p>
+        <div class="flow" style="margin-top:12px">
+          <div class="step" style="background:var(--cr)"><h4>Measure</h4><p>SIPALAGA, Sentinel-1, burn scars</p></div>
+          <div class="arrow">›</div>
+          <div class="step" style="background:var(--wine)"><h4>Verify</h4><p>BPBD, BRGM, university</p></div>
+          <div class="arrow">›</div>
+          <div class="step" style="background:var(--pink)"><h4>Pay</h4><p>Base + outcome bonus</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 SIMULATOR -->
+  <section id="sim" class="hide">
+    <div class="card">
+      <h3>Score &amp; Pay Simulator</h3>
+      <div class="ctl">
+        <label>District<select id="dist"><option>Bengkalis</option><option>Pelalawan</option></select></label>
+        <label>Village TAKE pool (Rp, illustrative)<input type="number" id="pool" value="10000000000" step="500000000"></label>
+        <label>Outcome bonus share <span id="bsv">30%</span><input type="range" id="bshare" min="10" max="50" value="30"></label>
+      </div>
+      <div style="overflow:auto"><table>
+        <thead><tr><th>Village (simulated)</th><th>Days GWL ≤ 40 cm (%)</th><th>Burned ha</th><th>3-yr avg ha</th><th>Hotspots</th><th>Score</th><th>Status</th><th>Base (Rp)</th><th>Bonus (Rp)</th><th>Total (Rp)</th></tr></thead>
+        <tbody id="tb"></tbody>
+      </table></div>
+      <div class="grid g4" style="margin-top:14px">
+        <div class="kpi"><b id="k1">-</b><small>villages earning a bonus</small></div>
+        <div class="kpi"><b id="k2">-</b><small>villages with bonus withheld (burned above own average)</small></div>
+        <div class="kpi"><b id="k3">-</b><small>bonus paid (Rp)</small></div>
+        <div class="kpi"><b id="k4">-</b><small>unspent bonus returned to next-year prevention pool (Rp)</small></div>
+      </div>
+      <div class="note">Village rows and the Rp pool are <b>simulated demonstration values</b>, not official data. Edit any cell to test the rule. District names and the 2026 burned areas on tab 1 are real.</div>
+    </div>
+  </section>
+
+  <!-- 3 VERIFY -->
+  <section id="verify" class="hide">
+    <div class="grid g2">
+      <div class="card"><h3>Verification checklist before scores are published</h3>
+        <div class="chk"><input type="checkbox" class="vc"> Station GWL data confirmed by BPBD and BRGM</div>
+        <div class="chk"><input type="checkbox" class="vc"> Sentinel-1 estimates audited by university peat centre</div>
+        <div class="chk"><input type="checkbox" class="vc"> Station vs radar divergence &lt; tolerance, else audit flag</div>
+        <div class="chk"><input type="checkbox" class="vc"> Concession land excluded from village boundaries</div>
+        <div class="chk"><input type="checkbox" class="vc"> Burn-scar layer from Ministry of Forestry loaded</div>
+        <div class="chk"><input type="checkbox" class="vc"> Scores posted publicly before APBD deliberation</div>
+        <div class="chk"><input type="checkbox" class="vc"> Village council (BPD) review session scheduled</div>
+        <div class="kpi" style="margin-top:12px"><b id="vstat">0 / 7</b><small id="vmsg">Scores locked until every check passes</small></div>
+      </div>
+      <div class="card"><h3>Public scoreboard (published view)</h3><div id="board"></div>
+        <div class="note">This is what residents, media and village councils see. Scores, not names of officials, drive the bonus.</div></div>
+    </div>
+  </section>
+
+  <!-- 4 METHOD -->
+  <section id="method" class="hide">
+    <div class="grid g2">
+      <div class="card"><h3>Scoring rule</h3>
+<div class="formula">Score (0–100) = 50 × G + 35 × B + 15 × H
+G = share of dry-season days with water table ≤ 40 cm below surface
+B = 1 − 0.5 × (burned / own 3-yr average), floored at 0
+H = max(0, 1 − hotspots / 10)
+
+Base  = pool × (1 − bonus share) ÷ number of villages
+Bonus = pool × bonus share × (score_i ÷ Σ eligible scores)
+Eligible only if burned ≤ own 3-yr average (else bonus withheld,
+base is always protected)</div>
+        <div class="note">Weights are a pilot design proposed in the essay (Appendix C) and are meant to be set by regent regulation after consultation.</div>
+      </div>
+      <div class="card"><h3>Data &amp; legal sources</h3>
+        <ul style="font-size:13px;line-height:1.6;padding-left:18px">
+          <li>MC Provinsi Riau (2026), InfoPublik. Riau burned area Jan to Jun 2026 by district.</li>
+          <li>RRI (2025). Five Riau regions win EFT Award 2025.</li>
+          <li>Putri et al. (2022), JPSL 12(4). SIPALAGA stations.</li>
+          <li>Putri &amp; Syaufina (2023), Jurnal Hutan Tropis 11(4). Water level and hotspots in Bengkalis.</li>
+          <li>Yananto et al. (2021), IJReSES 18(2). Sentinel-1 GWL model for Riau.</li>
+          <li>Busch et al. (2021), Nature Sustainability 4(9). Global review of EFT.</li>
+          <li>Azhari et al. (2026), JIIAP 16(2). TAKE accountability in Siak and Bengkalis.</li>
+          <li>UU 1/2022, UU 3/2024, Perda Siak 4/2022, Perbup Siak 88/2024, Permendagri 14/2025.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>BASAH prototype for the IAWC 2026 essay "Paying for Wet Peat". Real figures are cited; village-level rows are simulated for demonstration only.</footer>
+<script>
+const D=[["Bengkalis",8239.5,1],["Pelalawan",4582,1],["Indragiri Hilir",956.6,0],["Dumai",607.1,1],["Rokan Hilir",289.6,0],["Siak",281.1,1],["Kep. Meranti",199.3,0],["Kuantan Singingi",103.1,0],["Kampar",90.1,0],["Indragiri Hulu",80.7,0],["Rokan Hulu",40.5,1],["Pekanbaru",8.4,0]];
+const max=Math.max(...D.map(d=>d[1]));
+document.getElementById("bars").innerHTML=D.map(d=>`<div class="bar"><div class="n">${d[0]}</div><div class="t"><div class="f" style="width:${d[1]/max*100}%;background:${d[2]?'var(--cr)':'#d9cdd1'}"></div></div><div class="v">${d[1].toLocaleString('en')}</div></div>`).join("");
+const tot=D.reduce((a,d)=>a+d[1],0), tk=D.filter(d=>d[2]).reduce((a,d)=>a+d[1],0);
+document.getElementById("takeShare").textContent=(tk/tot*100).toFixed(1)+"%";
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));b.classList.add("on");
+ document.querySelectorAll("main>section").forEach(s=>s.classList.add("hide"));document.getElementById(b.dataset.t).classList.remove("hide")});
+const V={Bengkalis:[["Village A",82,3,12,1],["Village B",46,140,60,7],["Village C",71,10,25,2],["Village D",90,0,5,0],["Village E",38,220,90,12],["Village F",64,18,15,3]],
+         Pelalawan:[["Village G",77,6,20,1],["Village H",55,95,110,5],["Village I",33,310,80,14],["Village J",88,2,8,0],["Village K",61,30,28,4]]};
+const fmt=n=>Math.round(n).toLocaleString('id-ID');
+function score(r){const G=r[1]/100,B=Math.max(0,1-0.5*(r[3]>0?r[2]/r[3]:(r[2]>0?2:0))),H=Math.max(0,1-r[4]/10);return 50*G+35*B+15*H}
+function run(){
+ const dist=document.getElementById("dist").value,pool=+document.getElementById("pool").value||0,bs=+document.getElementById("bshare").value/100;
+ document.getElementById("bsv").textContent=Math.round(bs*100)+"%";
+ const rows=V[dist],n=rows.length,base=pool*(1-bs)/n;
+ const sc=rows.map(score),elig=rows.map(r=>r[2]<=r[3]);
+ const sum=sc.reduce((a,s,i)=>a+(elig[i]?s:0),0);
+ let paid=0;
+ document.getElementById("tb").innerHTML=rows.map((r,i)=>{const bonus=elig[i]&&sum?pool*bs*sc[i]/sum:0;paid+=bonus;
+  return `<tr><td><b>${r[0]}</b></td>${[1,2,3,4].map(k=>`<td><input type="number" data-i="${i}" data-k="${k}" value="${r[k]}"></td>`).join("")}
+  <td><b style="color:var(--cr)">${sc[i].toFixed(1)}</b></td><td><span class="pill ${elig[i]?'p-ok':'p-no'}">${elig[i]?'Bonus':'Withheld'}</span></td>
+  <td>${fmt(base)}</td><td>${fmt(bonus)}</td><td><b>${fmt(base+bonus)}</b></td></tr>`}).join("");
+ document.querySelectorAll("#tb input").forEach(inp=>inp.onchange=()=>{V[dist][+inp.dataset.i][+inp.dataset.k]=+inp.value;run()});
+ document.getElementById("k1").textContent=elig.filter(x=>x).length;
+ document.getElementById("k2").textContent=elig.filter(x=>!x).length;
+ document.getElementById("k3").textContent=fmt(paid);
+ document.getElementById("k4").textContent=fmt(pool*bs-paid);
+ board(dist,rows,sc,elig);
+}
+function board(dist,rows,sc,elig){
+ const ok=[...document.querySelectorAll(".vc")].filter(c=>c.checked).length;
+ document.getElementById("vstat").textContent=ok+" / 7";
+ document.getElementById("vmsg").textContent=ok===7?"All checks passed. Scores published.":"Scores locked until every check passes";
+ const el=document.getElementById("board");
+ if(ok<7){el.innerHTML='<p style="color:var(--gr);font-size:13px">Complete the checklist to publish '+dist+' scores.</p>';return}
+ const o=rows.map((r,i)=>[r[0],sc[i],elig[i]]).sort((a,b)=>b[1]-a[1]);
+ el.innerHTML=o.map(x=>`<div class="bar"><div class="n">${x[0]}</div><div class="t"><div class="f" style="width:${x[1]}%;background:${x[2]?'var(--cr)':'#d9cdd1'}"></div></div><div class="v">${x[1].toFixed(1)}</div></div>`).join("");
+}
+["dist","pool","bshare"].forEach(id=>document.getElementById(id).oninput=run);
+document.querySelectorAll(".vc").forEach(c=>c.onchange=run);
+run();
+</script>
+</body>
+</html>
